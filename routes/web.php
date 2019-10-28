@@ -19,6 +19,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
     Route::resource('user','UserController');
     Route::resource('category','CategoryController');
+    Route::resource('vendor','VendorController');
 });
 
 Auth::routes([

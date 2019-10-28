@@ -15,7 +15,8 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        $data['vendors'] = Vendor::orderBy('id','desc')->paginate(2);
+        return view('admin.vendor.index',$data);
     }
 
     /**
@@ -25,7 +26,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.vendor.create');
     }
 
     /**
@@ -36,7 +37,15 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+           'name' => 'required',
+           'email' => 'required|email|unique:vendors',
+           'status' => 'required|in:'.Vendor::ACTIVE_STATUS.','.Vendor::INACTIVE_STATUS,
+       ]);
+
+        Vendor::create($request->all());
+        session()->flash('message','Vendor Created Successfully');
+        return redirect()->route('vendor.index');
     }
 
     /**
@@ -58,7 +67,8 @@ class VendorController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        //
+       $data['vendor'] = $vendor;
+       return view('admin.vendor.edit',$data);
     }
 
     /**
@@ -70,7 +80,14 @@ class VendorController extends Controller
      */
     public function update(Request $request, Vendor $vendor)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'status' => 'required|in:'.Vendor::ACTIVE_STATUS.','.Vendor::INACTIVE_STATUS,
+        ]);
+
+        $vendor->update($request->all());
+        session()->flash('message','Vendor Updated Successfully');
+        return redirect()->route('vendor.index');
     }
 
     /**
@@ -81,6 +98,8 @@ class VendorController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-        //
+        $vendor->delete();
+        session()->flash('message','Vendor Updated Successfully');
+        return back();
     }
 }

@@ -33,6 +33,13 @@
                     <li><a href="{{ route('category.index') }}">List Of Category</a></li>
                 </ul>
             </li>
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-briefcase"></i> <span> Vendors </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('vendor.create') }}">Create New Vendor</a></li>
+                    <li><a href="{{ route('vendor.index') }}">List Of Vendor</a></li>
+                </ul>
+            </li>
 
             <!--<li class="has_sub">-->
             <!--<a href="javascript:void(0);" class="waves-effect"><i class="ti-share"></i><span>Multi Menu </span><span class="pull-right"><i class="mdi mdi-plus"></i></span></a>-->
