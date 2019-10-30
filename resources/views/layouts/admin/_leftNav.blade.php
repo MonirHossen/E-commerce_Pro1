@@ -27,12 +27,21 @@
             </li>
 
             <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-bag"></i> <span> Products </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('product.create') }}">Create New Product</a></li>
+                    <li><a href="{{ route('product.index') }}">List Of Products</a></li>
+                </ul>
+            </li>
+
+            <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-menu-alt"></i> <span> Categories </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                 <ul class="list-unstyled">
                     <li><a href="{{ route('category.create') }}">Create New Category</a></li>
                     <li><a href="{{ route('category.index') }}">List Of Category</a></li>
                 </ul>
             </li>
+
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-briefcase"></i> <span> Vendors </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                 <ul class="list-unstyled">

@@ -97,6 +97,7 @@ class UserController extends Controller
 
         $data['name']   = $request->name;
         $user = User::findOrFail($id);
+
         if ($request->hasFile('image'))
         {
             $file        = $request->file('image');

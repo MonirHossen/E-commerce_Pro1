@@ -20,6 +20,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::resource('user','UserController');
     Route::resource('category','CategoryController');
     Route::resource('vendor','VendorController');
+    Route::resource('product','ProductController');
 });
 
 Auth::routes([
