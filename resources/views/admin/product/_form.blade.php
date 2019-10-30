@@ -92,15 +92,15 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label class="col-md-2 control-label">Product Image</label>
-    <div class="col-md-10">
-        <input type="file" class="form-control" multiple name="image[]">
+@if(!isset($product))
+    <div class="form-group">
+        <label class="col-md-2 control-label">Product Image</label>
+        <div class="col-md-10">
+            <input type="file" class="form-control" multiple name="image[]">
+        </div>
+        @error('image')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+
     </div>
-    @error('image')
-    <span class="text-danger">{{ $message }}</span>
-    @enderror
-
-</div>
-
-
+@endif

@@ -106,7 +106,7 @@ class ProductController extends Controller
         $data['categories'] = Category::all();
         $data['vendors']    = Vendor::all();
         $data['product']    = $product;
-
+        return view('admin.product.edit',$data);
     }
 
     /**
@@ -118,7 +118,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'category_id'   => 'required',
+            'vendor_id'     => 'required',
+            'name'          => 'required',
+            'brand'         => 'required',
+            'description'   => 'required',
+            'unit_price'    => 'required',
+            'stock'         => 'required|int',
+            'status'        => 'required|in:'.Product::ACTIVE_STATUS.','.Product::INACTIVE_STATUS,
+        ]);
+        DB::beginTransaction();
+        try{
+            $product->update($request->except('_token'));
+            DB::commit();
+        }
+        catch (\Exception $exception)
+        {
+            DB::rollBack();
+            Log::error($exception->getMessage());
+        }
+
+        session()->flash('message','Product Updated Successfully!');
+        return redirect()->route('product.index');
+
     }
 
     /**
@@ -129,6 +152,27 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        DB::beginTransaction();
+        try{
+            $images = ProductImage::where('product_id',$product->id)->get();
+            foreach ($images as $image)
+            {
+                if (file_exists($image->image))
+                {
+                    unlink($image->image);
+                }
+                $image->delete();
+            }
+            $product->delete();
+        }
+        catch (\Exception $exception){
+            DB::rollBack();
+            Log::error($exception->getMessage());
+        }
+
+
+        session()->flash('message','Product Updated Successfully!');
+        return redirect()->route('product.index');
     }
+
 }
