@@ -18,7 +18,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h3 class="panel-title">Product Form</h3></div>
+                <div class="panel-heading">
+                    <a href="{{ route('product.index') }}" class="btn btn-info pull-right"><i class="ti-eye"></i>Product List</a>
+                    <h3 class="panel-title">Product Form</h3>
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" role="form">
                         @csrf
@@ -29,4 +32,11 @@
             </div> <!-- panel -->
         </div> <!-- col -->
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'editor1' );
+    </script>
 @endsection

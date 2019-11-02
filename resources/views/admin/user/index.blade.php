@@ -14,11 +14,12 @@
             </div>
         </div>
     </div>
-    @include('layouts.admin._alert')
     <div class="row">
         <div class="col-md-12">
+            @include('layouts.admin._message')
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                    <a href="{{ route('user.create') }}" class="btn btn-info pull-right"><i class="ti-plus"></i>User Create</a>
                     <h3 class="panel-title">All User</h3>
                 </div>
                 <div class="panel-body">

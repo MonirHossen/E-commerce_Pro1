@@ -99,7 +99,7 @@ class VendorController extends Controller
     public function destroy(Vendor $vendor)
     {
         $vendor->delete();
-        session()->flash('message','Vendor Updated Successfully');
+        session()->flash('message','Vendor Deleted Successfully');
         return back();
     }
 }

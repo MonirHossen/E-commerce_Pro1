@@ -18,7 +18,10 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-primary">
-                <div class="panel-heading"><h3 class="panel-title">Form elements</h3></div>
+                <div class="panel-heading">
+                    <a href="{{ route('user.index') }}" class="btn btn-info pull-right"><i class="ti-list"></i>User List</a>
+                    <h3 class="panel-title">Form elements</h3>
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" role="form">
                         @csrf

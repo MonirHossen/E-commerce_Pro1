@@ -38,9 +38,9 @@
 <div class="form-group">
     <label class="col-md-2 control-label">Image</label>
     <div class="col-md-10">
-        <input type="file" value="{{ old('image') }}" class="form-control" name="image">
+        <input type="file" onchange="document.getElementById('user_image').src = window.URL.createObjectURL(this.files[0])" value="{{ old('image') }}" class="form-control" name="image">
         @if(isset($user) && $user->image != null)
-            <img src="{{ asset($user->image) }}" width="20%" alt="">
+            <img id="user_image" src="{{ asset($user->image) }}" width="20%" alt="">
         @endif
     </div>
     @error('image')

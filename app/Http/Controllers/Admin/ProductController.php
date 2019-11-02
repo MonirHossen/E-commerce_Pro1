@@ -152,8 +152,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        DB::beginTransaction();
-        try{
             $images = ProductImage::where('product_id',$product->id)->get();
             foreach ($images as $image)
             {
@@ -163,16 +161,82 @@ class ProductController extends Controller
                 }
                 $image->delete();
             }
+
             $product->delete();
-        }
-        catch (\Exception $exception){
-            DB::rollBack();
-            Log::error($exception->getMessage());
-        }
+            session()->flash('message','Product Updated Successfully!');
+            return back();
+    }
 
+    //// image handeling methods//
 
-        session()->flash('message','Product Updated Successfully!');
-        return redirect()->route('product.index');
+    public function images($product_id)
+    {
+        $data['product_id'] = $product_id;
+        $data['images'] = ProductImage::where('product_id',$product_id)->get();
+        return view('admin.product.images',$data);
+    }
+
+    public function images_create($product_id)
+    {
+        $data['product_id'] = $product_id;
+        return view('admin.product.images_create',$data);
+    }
+
+    public function images_store(Request $request,$product_id)
+    {
+        $request->validate([
+            'image.*'   => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        if ($request->hasFile('image'))
+        {
+            foreach ($request->image as $file)
+            {
+                $file->move('images/product/',time().$file->getClientOriginalName());
+                $data['image'] = 'images/product/'.time().$file->getClientOriginalName();
+                $data['product_id'] = $product_id;
+                ProductImage::create($data);
+            }
+        }
+        session()->flash('message','Product Images Stored Successfully!');
+        return redirect()->route('product.images',$product_id);
+    }
+
+    public function image_update(Request $request,$image_id)
+    {
+        $request->validate([
+            'image' => 'required',
+        ]);
+        if ($request->hasFile('image'))
+        {
+            $old_image = ProductImage::findOrFail($image_id);
+            if (file_exists($old_image->image))
+            {
+                unlink($old_image->image);
+            }
+
+            $file       = $request->file('image');
+            $path       = 'images/product/';
+            $file_name  = time().rand('0000','9999').'.'.$file->getClientOriginalName();
+            $file->move($path,$file_name);
+            $data['image'] = $path.$file_name;
+
+            $old_image->update($data);
+            session()->flash('message','Product Image Updated Successfully!');
+            return back();
+        }
+    }
+
+    public function image_delete($image_id)
+    {
+        $old_image = ProductImage::findOrFail($image_id);
+        if (file_exists($old_image->image))
+        {
+            unlink($old_image->image);
+        }
+        $old_image->delete();
+        session()->flash('message','Product Image Deleted Successfully!');
+        return back();
     }
 
 }

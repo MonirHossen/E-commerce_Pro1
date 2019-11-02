@@ -31,7 +31,7 @@
 <div class="form-group">
     <label class="col-md-2 control-label">Name</label>
     <div class="col-md-10">
-        <input type="text"  name="name" class="form-control" value="{{ old('name',isset($product->name) ? $product->name : null) }}" placeholder="Name">
+        <input type="text"  name="name" class="form-control  border-danger" value="{{ old('name',isset($product->name) ? $product->name : null) }}" placeholder="Name">
         @error('name')
         <span class="text-danger">{{ $message }}</span>
         @enderror
@@ -51,7 +51,7 @@
 <div class="form-group">
     <label class="col-md-2 control-label" for="example-description">Description</label>
     <div class="col-md-10">
-        <textarea name="description" class="form-control" id="#" cols="30" rows="10">{{ old('description',isset($product->description)? $product->description : null) }}</textarea>
+        <textarea name="description"  class="form-control" id="editor1" cols="30" rows="10">{{ old('description',isset($product->description)? $product->description : null) }}</textarea>
         @error('description')
         <span class="text-danger">{{ $message }}</span>
         @enderror
