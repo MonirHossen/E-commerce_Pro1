@@ -20,6 +20,7 @@
             @include('layouts.admin._message')
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                    <a href="{{ route('product.create') }}" class="btn btn-info pull-right"><i class="ti-plus"></i>Add New Product</a>
                     <h3 class="panel-title">All Products</h3>
                 </div>
                 <div class="panel-body">

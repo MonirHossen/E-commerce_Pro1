@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
@@ -34,4 +32,4 @@ Auth::routes([
     'verify'    => false,
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+
