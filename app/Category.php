@@ -10,9 +10,13 @@ class Category extends Model
     const INACTIVE_STATUS = 'inactive';
    protected $fillable  = ['name','description','status'];
 
-   public function product()
+   public function products()
    {
       return $this->hasMany(Product::class);
+   }
+   public function scopeActive($query)
+   {
+       return $query->where('status',Category::ACTIVE_STATUS);
    }
 
 }

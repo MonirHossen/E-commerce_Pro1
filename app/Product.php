@@ -22,4 +22,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status',Product::ACTIVE_STATUS);
+    }
 }
