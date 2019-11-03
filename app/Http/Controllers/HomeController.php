@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,6 +22,8 @@ class HomeController extends Controller
                 return $query1->get();
             }])->active()->limit(5);
         }])->active()->first();
+        $data['new_arrivals']        = Product::with(['product_images','category'])->orderBy('id','desc')->active()->get();
+        $data['featured_products']   = Product::with(['product_images','category'])->where('featured_products',1)->orderBy('id','desc')->active()->get();
 
         return view('front.home',$data);
     }
