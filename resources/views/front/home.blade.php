@@ -2,6 +2,10 @@
 
 @section('title','Home Page')
 
+@section('custom-js')
+    <script src="{{ asset('assets/front/js/cart.js') }}"></script>
+@endsection
+
 @section('spotlight-1')
     <section class="so-spotlight1 ">
         <div class="container">
@@ -124,7 +128,7 @@
                         <div class="product-item-container">
                             <div class=" left-block col-lg-6 col-md-6 col-sm-12  col-xs-12">
                                 <div class="product-image-container  second_img ">
-                                    <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-1.jpg" alt=""></a>
+                                    <a href="product.html" class="product-img"><img src="#" custag="img/demo/shop/product/product-1.jpg" alt=""></a>
                                     <!--Sale Label-->
                                     <span class="sale">-20%</span>
 
@@ -178,7 +182,7 @@
                         <div class="product-item-container ">
                             <div class=" left-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="product-image-container  second_img ">
-                                    <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-2.jpg" alt=""></a>
+                                    <a href="product.html" class="product-img"><img src="#" custag="img/demo/shop/product/product-2.jpg" alt=""></a>
                                     <!--Sale Label-->
                                     <span class="sale">-15%</span>
 
@@ -232,7 +236,7 @@
                         <div class="product-item-container ">
                             <div class=" left-block col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="product-image-container  second_img ">
-                                    <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-3.jpg" alt=""></a>
+                                    <a href="product.html" class="product-img"><img src="#" custag="img/demo/shop/product/product-3.jpg" alt=""></a>
                                     <!--Sale Label-->
                                     <span class="sale">-25%</span>
 
@@ -365,7 +369,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-1.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-1.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -378,7 +382,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-2.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-2.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -391,7 +395,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-3.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-3.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -404,7 +408,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-4.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-4.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -417,7 +421,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-5.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-5.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -430,7 +434,7 @@
                                     <p>Dec</p>
                                 </div>
 
-                                <a class="popup-gallery" href="blog-detail.html"><img src="img/demo/blog/blog-6.jpg" alt="Kire tuma demonstraverunt lector">
+                                <a class="popup-gallery" href="blog-detail.html"><img src="#" custag="img/demo/blog/blog-6.jpg" alt="Kire tuma demonstraverunt lector">
                                     <p class="text">Lorem Ipsum is simply dummy text of the printing.</p></a>
                             </div>
                         </div>
@@ -475,7 +479,7 @@
                                         <div class="product-latest-item">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -501,7 +505,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-1.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-1.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -527,7 +531,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-2.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-2.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -554,7 +558,7 @@
                                         <div class="product-latest-item">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -580,7 +584,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-1.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-1.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -606,7 +610,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-2.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-2.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -651,7 +655,7 @@
                                         <div class="product-latest-item">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -678,7 +682,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-4.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-4.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -704,7 +708,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-5.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-5.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -744,7 +748,7 @@
                                         <div class="product-latest-item">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-6.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-6.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -770,7 +774,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-7.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-7.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -796,7 +800,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-8.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-8.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -824,7 +828,7 @@
                                         <div class="product-latest-item">
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-6.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-6.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -850,7 +854,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-7.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-7.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -876,7 +880,7 @@
 
                                             <div class="media">
                                                 <div class="media-left">
-                                                    <a href="product.html"><img src="img/demo/shop/product/product-8.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    <a href="product.html"><img src="#" custag="img/demo/shop/product/product-8.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="caption">
@@ -932,25 +936,25 @@
                         <hr><hr><hr>
                         <div class="owl-carousel owl-fetured-brand" data-dots="yes" data-nav="yes" data-loop="yes" data-items_xs="2" data-items_sm="4" data-items_md="6" data-margin="10" >
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-1.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-1.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-2.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-2.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-3.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-3.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-4.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-4.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-5.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-5.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-6.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-6.jpg" alt=""></a>
                             </div>
                             <div class="img-brand">
-                                <a href="#"><img src="img/demo/brands/brand-1.jpg" alt=""></a>
+                                <a href="#"><img src="#" custag="img/demo/brands/brand-1.jpg" alt=""></a>
                             </div>
                         </div>
                     </div>

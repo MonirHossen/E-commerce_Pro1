@@ -3,7 +3,11 @@
         <div class="left-block">
             <div class="product-image-container  second_img ">
                 <a href="{{ route('product.details',$product->id) }}" class="product-img">
-                    <img style="height: 300px;" src="{{ asset($product->product_images[0]->image) }}" alt="">
+                    @if(isset($product->product_images[0]))
+                     <img style="height: 200px;" src="{{ asset($product->product_images[0]->image) }}" alt="">
+                    @else
+                        <a href="product.html"><img src="{{ asset('images/custome/no-image.png') }}" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                    @endif
                 </a>
                 <!--Sale Label-->
                 <span class="new">New</span>
@@ -39,7 +43,17 @@
             </div>
 
             <div class="button-group">
-                <button class="addToCart btn btn-default "   data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
+                <button class="addToCart btn btn-default "
+                        cus-product-id="{{ $product->id }}"
+                        cus-product-name="{{ $product->name }}"
+                        cus-product-price="{{ $product->unit_price }}"
+                        @if(isset($product->product_images[0]))
+                        cus-product-image="{{ asset($product->product_images[0]->image) }}"
+                        @else
+                        cus-product-image="{{ asset('images/custome/no-image.png') }}"
+                        @endif
+                        title="Add to Cart"> <span class="">Add to Cart</span>
+                </button>
             </div>
         </div><!-- right block -->
 

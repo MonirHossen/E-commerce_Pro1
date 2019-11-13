@@ -20,3 +20,4 @@
 <script type="text/javascript" src="{{ asset('assets/front/js/themejs/so_megamenu.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/front/js/themejs/addtocart.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/front/js/themejs/pathLoader.js') }}"></script>
+@yield('custom-js')
