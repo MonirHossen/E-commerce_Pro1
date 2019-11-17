@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/product/{category_id}', 'HomeController@category')->name('category.product');
 Route::get('/product/{product_id}/details', 'HomeController@product_details')->name('product.details');
+Route::get('checkout','CheckoutController@cart')->name('checkout');
+Route::get('checkout/submit','CheckoutController@checkout')->name('checkout.submit');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');

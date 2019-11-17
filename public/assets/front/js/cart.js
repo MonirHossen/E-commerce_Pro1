@@ -1,6 +1,7 @@
 $(function () {
     // localStorage.clear();
     cartDetails();
+    checkOutCartDetails();
     $('.addToCart').click(function () {
         // localStorage.clear();
         let productId       = $(this).attr('cus-product-id');
@@ -91,6 +92,40 @@ $(function () {
         }
     }
 
+    function checkOutCartDetails() {
+        let cartHtml = '';
+        let totalPrice = 0;
+        if (localStorage.getItem('cart') === null)
+        {
+
+        }
+        else {
+            let cartData = JSON.parse(localStorage.getItem('cart'));
+            $('.number-shopping-cart').html(cartData.length);
+
+            cartData.forEach(function (data,index) {
+                cartHtml += '<tr>\n' +
+                    '                        <td class="text-center"><a href="product.html"><img width="70px" src="'+data.productImage+'" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>\n' +
+                    '                        <td class="text-left"><a href="product.html">'+data.productName+'</a><br />\n' +
+                    '                        </td>\n' +
+                    '                        <td class="text-left">Pt 001</td>\n' +
+                    '                        <td class="text-left" width="200px"><div class="input-group btn-block quantity">\n' +
+                    '                                <input type="text" name="quantity" value="'+data.productQuantity+'" size="1" class="form-control" />\n' +
+                    '                                <span class="input-group-btn">\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t<button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary"><i class="fa fa-clone"></i></button>\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>\n' +
+                    '\t\t\t\t\t\t\t\t\t\t</span></div></td>\n' +
+                    '                        <td class="text-right">$'+data.productPrice+'</td>\n' +
+                    '                        <td class="text-right">$'+data.productPrice*data.productQuantity+'</td>\n' +
+                    '                    </tr>';
+                totalPrice += (data.productPrice * data.productQuantity);
+            });
+
+            $('.cart-view').html(cartHtml);
+            $('.total-price').html('$'+totalPrice);
+        }
+    }
+
     function addToCart(cart,product) {
         cart.push(product);
         localStorage.setItem("cart",JSON.stringify(cart));
@@ -113,6 +148,35 @@ $(function () {
         localStorage.setItem("cart",JSON.stringify(cart));
         cartDetails();
     });
+    $('.checkOutBtn').click(function () {
+        if (checkCartItem())
+        {
+            let cartData = JSON.parse(localStorage.getItem('cart'));
+            let url      = $(this).attr('cus-url');
+            $.ajax({
+                url:url,
+                data:{data:cartData},
+                type:'get',
+                success:function () {
+
+                },
+                failed:function () {
+
+                }
+            });
+        }
+    });
+
+    function checkCartItem() {
+        if (localStorage.getItem('cart') === null)
+        {
+            return false;
+        }
+        else
+        {
+             return true;
+        }
+    }
 
 });
 
