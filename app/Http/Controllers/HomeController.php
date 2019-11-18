@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,5 +31,13 @@ class HomeController extends Controller
     public function category()
     {
 
+    }
+
+    public function product_details($id)
+    {
+        $data['product_details'] = Product::findOrFail($id);
+        $data['product_images']  = ProductImage::where('product_id',$id)->get();
+//        dd($data);
+        return view('front.product_details',$data);
     }
 }

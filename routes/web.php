@@ -17,6 +17,7 @@ Route::get('/product/{product_id}/details', 'HomeController@product_details')->n
 Route::get('checkout','CheckoutController@cart')->name('checkout');
 Route::get('checkout/submit','CheckoutController@checkout')->name('checkout.submit');
 
+
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
     Route::resource('user','UserController');

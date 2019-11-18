@@ -7,7 +7,7 @@
 
 @section('content')
     <ul class="header-main ">
-        <li class="home"><a href="#">Home   </a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+        <li class="home"><a href="{{ route('home') }}">Home   </a><i class="fa fa-angle-right" aria-hidden="true"></i></li>
         <li> Shopping Cart</li>
     </ul>
     <div class="row">
