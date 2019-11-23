@@ -16,4 +16,7 @@ class OrderDetails extends Model
         'unit_price',
         'sub_total',
     ];
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }

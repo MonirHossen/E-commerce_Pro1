@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Category::active()->orderBy('name')->get();
+        $data['categories']                 = Category::active()->orderBy('name')->get();
         $data['featured_category_products'] = Category::with(['products' => function($query){
             return $query->with(['product_images' => function($query1){
                 return $query1->get();
@@ -35,9 +35,12 @@ class HomeController extends Controller
 
     public function product_details($id)
     {
-        $data['product_details'] = Product::findOrFail($id);
-        $data['product_images']  = ProductImage::where('product_id',$id)->get();
-//        dd($data);
+        $product                    = Product::with('category')->findOrFail($id);
+        $data['product_details']    = $product;
+        $data['product_images']     = ProductImage::where('product_id',$id)->get();
+        $data['leatest_products']   = Product::with('product_images')->orderBy('id','desc')->limit(4)->get();
+        $data['related_products']   = Product::with('product_images')->where('category_id',$product->category_id)->orderBy('id','desc')->active()->get();
+
         return view('front.product_details',$data);
     }
 }

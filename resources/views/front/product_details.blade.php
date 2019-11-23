@@ -1,12 +1,16 @@
 @extends('layouts.front.master')
 @section('title','Product Details')
 
+@section('custom-js')
+    <script src="{{ asset('assets/front/js/cart.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="main-container container">
         <ul class="header-main type-1">
-            <li class="home"><a href="#">Home<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-            <li class="home"><a href="#">Smartphone &amp; Tablets<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-            <li><a href="#">Bint Beef</a></li>
+            <li class="home"><a href="{{ route('home') }}">Home<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            <li class="home"><a href="#">{{ $product_details->category->name }}<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            <li><a href="#">{{ $product_details->name }}</a></li>
         </ul>
 
         <div class="row">
@@ -31,89 +35,93 @@
                             </div>
 
                             <div class="content-product-right col-md-6 col-sm-12 col-xs-12">
-                                <div class="title-product">
-                                    <h1>Bint Beef</h1>
-                                </div>
-                                <!-- Review -->
-                                <div class="box-review form-group">
-                                    <div class="ratings">
-                                        <div class="rating-box">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star gray"></i>
-                                        </div>
+
+                                    <div class="title-product">
+                                        <h1>{{ $product_details->name }}</h1>
                                     </div>
 
-                                </div>
-                                <div class="product-box-desc">
-                                    <ul>
-                                        <li>45 inch HD Touch Screen (1280 x 720)</li>
-                                        <li>Android 4.4 KitKat OS</li>
-                                        <li>1.4 GHz Quad Core™ Processor</li>
-                                        <li>20 MP front and 28 megapixel CMOS rear camera</li>
-                                    </ul>
-                                </div>
-                                <div class="product-label form-group">
-                                    <div class="stock">
-                                        <span>Availability:</span> <span class="instock">In Stock</span>
-                                        <p>SKU: 3721 -Vlk</p>
-                                    </div>
-                                    <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                        <span class="price-new" itemprop="price">$114.00</span>
-                                        <span class="price-old">$122.00</span>
-                                    </div>
 
-                                </div>
-                                <div id="product">
-                                    <div class="form-group box-info-product">
-                                        <div class="option quantity">
-                                            <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
-                                                <label>Qty:  </label>
-                                                <input class="form-control" type="text" name="quantity" value="1">
-                                                <input type="hidden" name="product_id" value="50">
-                                                <span class="input-group-addon product_quantity_down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                <span class="input-group-addon product_quantity_up"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
-
-                                            </div>
-                                        </div>
-                                        <div class="info-product-right">
-                                            <div class="cart">
-                                                <input type="button" data-toggle="tooltip" title="" value="Add to Cart" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Add to Cart">
-                                            </div>
-                                            <div class="add-to-links wish_comp">
-                                                <ul class="blank list-inline">
-                                                    <li class="wishlist">
-                                                        <a class="icon" data-toggle="tooltip" title="" onclick="wishlist.add('50');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="compare">
-                                                        <a class="icon" data-toggle="tooltip" title="" onclick="compare.add('50');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                                <!-- end box info product -->
-                                <div class="share">
-                                    <p>Share This:</p>
-                                    <div class="share-icon">
+                                    <div class="product-box-desc">
                                         <ul>
-                                            <li class="facebook"><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                            <li class="twitter"><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                            <li class="google"><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                            <li class="skype"><a href=""><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                            <li>45 inch HD Touch Screen (1280 x 720)</li>
+                                            <li>Android 4.4 KitKat OS</li>
+                                            <li>1.4 GHz Quad Core™ Processor</li>
+                                            <li>20 MP front and 28 megapixel CMOS rear camera</li>
                                         </ul>
                                     </div>
-                                </div>
+                                    <div class="product-label form-group">
 
-                            </div>					</div>
+                                        <div class="stock">
+                                            <span>Availability:</span> <span class="instock">In Stock</span>
+
+                                        </div>
+                                        <br>
+                                        <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
+                                            <span class="price-new" itemprop="price">{{ $product_details->unit_price.' '.'Taka' }}</span>
+                                            <span class="price-old">$122.00</span>
+                                        </div>
+
+                                    </div>
+                                    <div id="product">
+                                        <div class="form-group box-info-product">
+                                            <div class="option quantity">
+                                                <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                                    <label>Qty:  </label>
+                                                    <input class="form-control" type="text" name="quantity" value="1">
+                                                    <input type="hidden" name="product_id" value="50">
+                                                    <span class="input-group-addon product_quantity_down"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    <span class="input-group-addon product_quantity_up"><i class="fa fa-angle-up" aria-hidden="true"></i></span>
+
+                                                </div>
+                                            </div>
+                                            <div class="info-product-right">
+                                                <div class="cart">
+                                                    <button class="addToCart btn btn-mega btn-lg btn-default "
+                                                            cus-product-id="{{ $product_details->id }}"
+                                                            cus-product-name="{{ $product_details->name }}"
+                                                            cus-product-price="{{ $product_details->unit_price }}"
+                                                            @if(isset($product_images[0]->image))
+                                                            cus-product-image="{{ asset($product_images[0]->image) }}"
+                                                            @else
+                                                            cus-product-image="{{ asset('images/custome/no-image.png') }}"
+                                                            @endif
+                                                            title="Add to Cart"> <span class="">Add to Cart</span>
+                                                    </button>
+                                                </div>
+                                                <div class="add-to-links wish_comp">
+                                                    <ul class="blank list-inline">
+                                                        <li class="wishlist">
+                                                            <a class="icon" data-toggle="tooltip" title="" onclick="wishlist.add('50');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="compare">
+                                                            <a class="icon" data-toggle="tooltip" title="" onclick="compare.add('50');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <!-- end box info product -->
+                                    <div class="share">
+                                        <p>Share This:</p>
+                                        <div class="share-icon">
+                                            <ul>
+                                                <li class="facebook"><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                <li class="twitter"><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                <li class="google"><a href=""><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                <li class="skype"><a href=""><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sx-12">
                                 <div class="producttab ">
@@ -127,18 +135,8 @@
                                         <div class="tab-content col-xs-12">
                                             <div id="tab-1" class="tab-pane fade active in">
                                                 <p>
-                                                    The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there's no limit to what you can achieve. <br>
-                                                    <br>
-                                                    The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it's designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. <br>
-                                                    <br>
-                                                    Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple's ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. <br>
-                                                    <br>
-                                                    Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. <br>
-                                                    <br>
-                                                    The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.<br>
+                                                   {!! $product_details->description !!}
                                                 </p>
-
-
                                             </div>
                                             <div id="tab-review" class="tab-pane fade  in">
                                                 <form>
@@ -233,111 +231,34 @@
                             <hr>
                             <hr>
                             <div class="modcontent ">
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-3.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Sunt Molup</a></h4>
+                                @foreach($leatest_products as $product)
+                                    <div class="product-latest-item">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="{{ route('product.details',$product->id) }}"><img src="{{ asset($product->product_images[0]->image) }}" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="caption">
+                                                    <h4><a href="{{ route('product.details',$product->id) }}">{{ $product->name }}</a></h4>
 
-                                                <div class="price">
-                                                    <span class="price-new">$100.00</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
+                                                    <div class="price">
+                                                        <span class="price-new">$100.00</span>
+                                                    </div>
+                                                    <div class="ratings">
+                                                        <div class="rating-box">
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                            <span class=""><i class="fa fa-star "></i></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-1.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Et Spare</a></h4>
-
-                                                <div class="price">
-                                                    <span class="price-new">$99.00</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star "></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-latest-item">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-2.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Cisi Chicken</a></h4>
-
-                                                <div class="price">
-                                                    <span class="price-new">$59.00</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-latest-item transition">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="product.html"><img src="img/demo/shop/product/product-4.jpg" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height:104px;"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="caption">
-                                                <h4><a href="product.html">Kevin Labor</a></h4>
-                                                <div class="price">
-                                                    <span class="price-new">$245.00</span>
-                                                </div>
-                                                <div class="ratings">
-                                                    <div class="rating-box">
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class=""><i class="fa fa-star "></i></span>
-                                                        <span class="gray"><i class="fa fa-star"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                                @endforeach
                             </div>
 
                         </div>
@@ -345,7 +266,7 @@
                             <div class="modcontent clearfix">
                                 <div class="banners">
                                     <div>
-                                        <a href="#"><img src="img/demo/cms/left-image-static.png" alt="left-image"></a>
+                                        <a href="#"><img src="{{asset('images/custome/left-image-static.png')}}" alt="left-image"></a>
                                     </div>
                                 </div>
 
@@ -360,377 +281,57 @@
                     <hr>
                     <hr>
                     <div class="related-product-owl">
-                        <div class=" owl-carousel related-owl " data-nav="yes" data-loop="yes" data-margin="30" data-items_xs="1" data-items_sm="4" data-items_md="5">
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-1.jpg" alt=""></a>
-                                            <!--Sale Label-->
+                        <div class=" owl-carousel related-owl " data-nav="yes" data-loop="no" data-margin="30" data-items_xs="1" data-items_sm="4" data-items_md="5">
+                            @foreach($related_products as $product)
+                             <div class="product-layout">
+                                    <div class="product-item-container">
+                                        <div class="left-block">
+                                            <div class="product-image-container  second_img ">
+                                                <a href="{{ route('product.details',$product->id) }}" class="product-img">
+                                                    @if(isset($product->product_images[0]))
+                                                        <img style="height: 200px;" src="{{ asset($product->product_images[0]->image) }}" alt="">
+                                                    @else
+                                                        <a href="{{ route('product.details',$product->id) }}"><img src="{{ asset('images/custome/no-image.png') }}" alt="Cisi Chicken" title="Cisi Chicken" class="img-responsive" style="width: 78px; height: 104px;"></a>
+                                                    @endif
+                                                </a>
+                                                <!--Sale Label-->
 
-                                            <span class="sale">-25%</span>
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
+                                                {{--                                            <span class="sale">-25%</span>--}}
+                                                <div class="hover">
+                                                    <ul>
+                                                        <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
+                                                        <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
+                                                        <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #01</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
+                                        <div class="right-block">
+                                            <div class="caption">
+                                                <h4><a href="{{ route('product.details',$product->id) }}">{{ $product->name }}</a></h4>
+                                                <div class="price">
+                                                    <span class="price-new">${{ $product->unit_price }}</span>
                                                 </div>
                                             </div>
 
-                                            <div class="price">
-                                                <span class="price-new">$43.00</span>
-                                                <span class="price-old">$75.00</span>
+                                            <div class="button-group">
+                                                <button class="addToCart btn btn-default "
+                                                        cus-product-id="{{ $product->id }}"
+                                                        cus-product-name="{{ $product->name }}"
+                                                        cus-product-price="{{ $product->unit_price }}"
+                                                        @if(isset($product->product_images[0]))
+                                                        cus-product-image="{{ asset($product->product_images[0]->image) }}"
+                                                        @else
+                                                        cus-product-image="{{ asset('images/custome/no-image.png') }}"
+                                                        @endif
+                                                        title="Add to Cart"> <span class="">Add to Cart</span>
+                                                </button>
                                             </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-3.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <span class="sale">-25%</span>
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        </div><!-- right block -->
                                     </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #02</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
 
-                                            <div class="price">
-                                                <span class="price-new">$74.00</span>
-                                                <span class="price-old">$122.00</span>
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
                             </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-2.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <span class="sale">-50%</span>
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #03</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$78.00</span>
-                                                <span class="price-old">$154.00</span>
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-5.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #04</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$78.00</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-4.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #05</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$85.00</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-7.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #06</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$68.00</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-6.jpg" alt=""></a>
-                                            <!--Sale Label-->
-                                            <span class="new">New</span>
-
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #07</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$58.00</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
-
-                            <div class="product-layout">
-                                <div class="product-item-container">
-                                    <div class="left-block">
-                                        <div class="product-image-container  second_img ">
-                                            <a href="product.html" class="product-img"><img src="img/demo/shop/product/product-6.jpg" alt=""></a>
-                                            <!--Sale Label-->
-
-                                            <div class="hover">
-                                                <ul>
-                                                    <li class="icon-heart"><a class="wishlist" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('42');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></a></li>
-                                                    <li class="icon-exchange"><a class="compare" type="button" data-toggle="tooltip" title="" onclick="compare.add('42');" data-original-title="Compare this Product"><i class="fa fa-exchange"></i></a></li>
-                                                    <li class="icon-search"><a class="quickview iframe-link " data-fancybox-type="iframe" href="quickview.html">  <i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="right-block">
-                                        <div class="caption">
-                                            <h4><a href="product.html">Dummy product #08</a></h4>
-                                            <div class="ratings">
-                                                <div class="rating-box">
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class=""><i class="fa fa-star "></i></span>
-                                                    <span class="gray"><i class="fa fa-star "></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="price">
-                                                <span class="price-new">$74.00</span>
-
-                                            </div>
-                                            <div class="description item-desc hidden">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est . </p>
-                                            </div>
-                                        </div>
-
-                                        <div class="button-group">
-                                            <button class="addToCart btn btn-default " type="button" data-toggle="tooltip" title="" onclick="cart.add('42', '1');" data-original-title="Add to Cart"> <span class="">Add to Cart</span></button>
-                                        </div>
-                                    </div><!-- right block -->
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Mail\OrderPlacement;
 use App\Order;
 use App\OrderDetails;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -17,10 +20,19 @@ class CheckoutController extends Controller
 
    public function checkout(Request $request)
    {
+       $cart = $request->data['cart'];
+       $client = $request->data['client'];
        DB::beginTransaction();
        try{
-         $cart = $request->data;
+         $client = Client::create([
+             'name'     => $client['name'],
+             'email'    => $client['email'],
+             'phone'    => $client['phone'],
+             'address'  => $client['address'],
+         ]);
+
          $order = Order::create([
+             'client_id'      =>  $client->id,
              'invoice_id'        =>  'INV-'.time(),
              'total_amount'      =>  0,
              'payment_type'      => Order::PT_OFFLINE,
@@ -49,6 +61,9 @@ class CheckoutController extends Controller
          $order->total_amount = $total_amount;
          $order->save();
         DB::commit();
+
+        Mail::to($client->email)->send(new OrderPlacement($order->id));
+
         return json_encode(['response' => true]);
        }
        catch (\Exception $exception)

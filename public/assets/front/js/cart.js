@@ -61,26 +61,47 @@ $(function () {
         {
             let cartData = JSON.parse(localStorage.getItem('cart'));
             let url      = $(this).attr('cus-url');
-            $.ajax({
-                url:url,
-                data:{data:cartData},
-                type:'get',
-                success:function (response) {
-                    let res = JSON.parse(response);
-                    if (res.response){
-                        localStorage.clear();
-                        cartDetails();
-                        checkOutCartDetails();
-                    }else {
+            let client = {
+                name:       $('#input-name').val(),
+                email:      $('#input-email').val(),
+                phone:      $('#input-phone').val(),
+                address:    $('#input-address').val(),
+            }
+
+            if (client.name !='' && client.email !='' && client.phone !='' && client.address != '')
+            {
+                $.ajax({
+                    url:url,
+                    data:{
+                        data:
+                            {
+                                cart:cartData,
+                                client:client,
+                            },
+                        },
+                    type:'get',
+                    success:function (response) {
+                        let res = JSON.parse(response);
+                        if (res.response){
+                            localStorage.clear();
+                            cartDetails();
+                            checkOutCartDetails();
+                            refreshClientFrom();
+                        }else {
+                            alert('Something went wrong!! Please Try Again.')
+                        }
+                    },
+                    failed:function () {
                         alert('Something went wrong!! Please Try Again.')
-                    }
-                },
-                failed:function () {
-                    alert('Something went wrong!! Please Try Again.')
-                },
-            });
+                    },
+                });
+            }
+            else {
+                alert('All Fields Are Required!!');
+            }
         }
     });
+
 
     function cartDetails() {
         let cartHtml = '';
@@ -151,6 +172,12 @@ $(function () {
         $('.cart-view').html(cartHtml);
         $('.total-price').html('$'+totalPrice);
     }
+    function refreshClientFrom() {
+        $('#input-name').val('');
+        $('#input-email').val('');
+        $('#input-phone').val('');
+        $('#input-address').val('');
+    }
 
     function addToCart(cart,product) {
         cart.push(product);
@@ -185,7 +212,23 @@ $(function () {
              return true;
         }
     }
+    /// Client Page Validation //
 
+    function cheakEmailAddress() {
+        let emailAddress = $('#input-email').val();
+        let reg=/^([a-zA-Z0 -9_\.\-])+\@(([a-zA-z0-9\-])+\.)+([a-zA-z0-9]{2,3})+$/;
+        if(reg.test(emailAddress)){
+            $('#emailAddressError').text(' ');
+        }
+        else{
+            $('#emailAddressError').text('Email Address is invalid!');
+        }
+    }
+    $('#input-email').keyup(function () {
+        cheakEmailAddress();
+    });
+
+/// Client Page Validation End //
 });
 
 

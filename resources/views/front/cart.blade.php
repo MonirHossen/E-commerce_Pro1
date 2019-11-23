@@ -46,6 +46,45 @@
                 </div>
             </div>
 
+            <h3 class="subtitle no-margin">What would you like to do next?</h3>
+            <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#collapse-coupon" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" aria-expanded="true">Registration Form
+
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-coupon" class="panel-collapse collapse in" aria-expanded="true">
+                        <div class="panel-body">
+                            <div class="from-group">
+                                <label class="col-sm-2 control-label" for="input-name">Name</label>
+                                <input type="text" name="name" value="" placeholder="Enter your name here" id="input-name" class="form-control">
+                            </div>
+                            <div class="from-group">
+                                <label class="col-sm-2 control-label" for="input-email">Email</label>
+                                <input type="email" name="email" value="" placeholder="Enter your email here" id="input-email" class="form-control">
+                                <span id="emailAddressError" class="text-danger"></span>
+                            </div>
+
+                            <div class="from-group">
+                                <label class="col-sm-2 control-label" for="input-phone">Phone</label>
+                                <input type="text" name="phone" value="" placeholder="Enter your phone here" id="input-phone" class="form-control">
+                            </div>
+
+                            <div class="from-group">
+                                <label class="col-sm-2 control-label" for="input-address">Adress</label>
+                                <textarea class="form-control" name="address" id="input-address" cols="10" rows="5" placeholder="Enter your address here"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="buttons">
                 <div class="pull-left"><a href="index.html" class="btn btn-primary">Continue Shopping</a></div>
                 <div class="pull-right"><a href="#" class="btn btn-primary checkOutBtn" cus-url="{{ route('checkout.submit') }}">Checkout</a></div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
+        'client_id',
         'invoice_id',
         'total_amount',
         'payment_type',
@@ -26,4 +27,11 @@ class Order extends Model
     const STATUS_PROCESSING = 'processing';
     const STATUS_DELIVERED  = 'delivered';
     const STATUS_DECLINED   = 'declined';
+
+    public function orderDetails(){
+       return $this->hasMany(OrderDetails::class);
+    }
+    public function client(){
+       return $this->belongsTo(Client::class);
+    }
 }
