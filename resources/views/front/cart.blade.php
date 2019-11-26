@@ -86,11 +86,12 @@
             </div>
 
             <div class="buttons">
-                <div class="pull-left"><a href="index.html" class="btn btn-primary">Continue Shopping</a></div>
+                <div class="pull-left"><a href="{{ route('home') }}" class="btn btn-primary">Continue Shopping</a></div>
                 <div class="pull-right"><a href="#" class="btn btn-primary checkOutBtn" cus-url="{{ route('checkout.submit') }}">Checkout</a></div>
             </div>
         </div>
         <!--Middle Part End -->
 
     </div>
+    <url val="{{ route('payment.index') }}"></url>
 @endsection
