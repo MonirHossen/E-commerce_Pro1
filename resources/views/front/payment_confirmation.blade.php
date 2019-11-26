@@ -3,8 +3,8 @@
 @section('content')
     <div class="row">
         <div id="content" class="col-md-12">
-            <h2 class="title">Order Confirmation</h2>
-            <a href="{{ $url }}"  class="btn btn-info btn-lg">Make Payment</a>
+            <h2 class="title">Thanks for your payment!!</h2>
+            <a href="{{ route('home') }}" target="_blank" class="btn btn-info btn-lg">Continue Shopping</a>
         </div>
     </div>
 @endsection

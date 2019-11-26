@@ -17,6 +17,7 @@ Route::get('/product/{product_id}/details', 'HomeController@product_details')->n
 Route::get('checkout','CheckoutController@cart')->name('checkout');
 Route::get('checkout/submit','CheckoutController@checkout')->name('checkout.submit');
 Route::post('payment/success','PaymentController@success')->name('payment.success');
+Route::get('payment/confirmation','PaymentController@payment_confirmation')->name('payment.confirmation');
 Route::get('payment/{order_id?}','PaymentController@index')->name('payment.index');
 
 
