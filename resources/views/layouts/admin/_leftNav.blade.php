@@ -18,6 +18,10 @@
                 <a href="{{ route('admin.dashboard') }}" class="waves-effect"><i class="ti-home"></i><span> Dashboard </span></a>
             </li>
 
+            <li>
+                <a href="{{ route('order') }}" class="waves-effect"><i class="ti-agenda"></i><span> Orders </span></a>
+            </li>
+
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i> <span> Users </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                 <ul class="list-unstyled">

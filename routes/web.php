@@ -32,6 +32,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::post('product/{product_id}/images/store','ProductController@images_store')->name('product.images.store');
     Route::put('product/{image_id}/image/update','ProductController@image_update')->name('product.image.update');
     Route::delete('product/{image_id}/image/delete','ProductController@image_delete')->name('product.image.delete');
+    Route::get('order','OrderController@index')->name('order');
 });
 
 Auth::routes([
