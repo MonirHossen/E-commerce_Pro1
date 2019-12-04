@@ -9,6 +9,7 @@
 
 @section('content')
     <div class="row">
+        @include('layouts.admin._message')
         <div class="col-sm-12">
             <div class="page-header-title">
                 <h4 class="pull-left page-title">Dashboard</h4>

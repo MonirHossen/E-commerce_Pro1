@@ -1,4 +1,17 @@
-<div class="form-group">
+ <div class="form-group">
+    <label class="col-md-2 control-label">Role</label>
+    <div class="col-md-10">
+        <select name="role" id="role" class="form-control">
+            <option value="">--Select Role--</option>
+            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\User::ROLE_ADMIN) selected @endif value="{{ \App\User::ROLE_ADMIN }}">Admin</option>
+            <option @if(old('role',isset($user->role) ? $user->role : null) == \App\User::ROLE_MANAGER) selected @endif value="{{ \App\User::ROLE_MANAGER }}">Manager</option>
+        </select>
+        @error('role')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
+ <div class="form-group">
     <label class="col-md-2 control-label">Name</label>
     <div class="col-md-10">
         <input type="text"  name="name" class="form-control" value="{{ old('name',isset($user->name) ? $user->name : null) }}" placeholder="Name">

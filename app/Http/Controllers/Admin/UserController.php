@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -26,7 +27,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        if (Gate::allows('admin',auth()->user()))
+        {
+            return view('admin.user.create');
+        }
+        session()->flash('message','You are not authorized persion to operation this option!!');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -37,25 +43,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'       => 'required',
-            'email'      => 'required|email|unique:users',
-            'password'   => 'required|confirmed',
-            'image'      => 'mimes:jpeg,png|max:2048'
-        ]);
-        $data               = $request->except(['_token','password','image']);
-        $data['password']   = bcrypt($request->password);
-        if ($request->hasFile('image'))
+        if (Gate::allows('admin',auth()->user()))
         {
-            $file        = $request->file('image');
-            $path        = 'images/user';
-            $file_name   = time().rand('0000','9999').'.'.$file->getClientOriginalName();
-            $file->move($path,$file_name);
-            $data['image'] = $path.'/'.$file_name;
-        }
-        User::create($data);
-        session()->flash('message','Admin Created Successfully!');
-        return redirect()->route('user.index');
+            $request->validate([
+                'role'       => 'required|in:'.User::ROLE_ADMIN.','.User::ROLE_MANAGER,
+                'name'       => 'required',
+                'email'      => 'required|email|unique:users',
+                'password'   => 'required|confirmed',
+                'image'      => 'mimes:jpeg,png|max:2048'
+            ]);
+            $data               = $request->except(['_token','password','image']);
+            $data['password']   = bcrypt($request->password);
+            if ($request->hasFile('image'))
+            {
+                $file        = $request->file('image');
+                $path        = 'images/user';
+                $file_name   = time().rand('0000','9999').'.'.$file->getClientOriginalName();
+                $file->move($path,$file_name);
+                $data['image'] = $path.'/'.$file_name;
+            }
+            User::create($data);
+            session()->flash('message','Admin Created Successfully!');
+            return redirect()->route('user.index');
+      }
+        session()->flash('message','You are not authorized persion to operation this option!!');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -77,8 +89,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $data['user']   = User::findOrFail($id);
-        return view('admin.user.edit',$data);
+         if (Gate::allows('admin',auth()->user()))
+           {
+               $data['user']   = User::findOrFail($id);
+               return view('admin.user.edit',$data);
+           }
+        session()->flash('message','You are not authorized persion to operation this option!!');
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -90,29 +107,37 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'       => 'required',
-            'image'      => 'mimes:jpeg,png|max:2048'
-        ]);
-
-        $data['name']   = $request->name;
-        $user = User::findOrFail($id);
-
-        if ($request->hasFile('image'))
+        if (Gate::allows('admin',auth()->user()))
         {
-            $file        = $request->file('image');
-            $path        = 'images/user';
-            $file_name   = time().rand('0000','9999').'.'.$file->getClientOriginalName();
-            $file->move($path,$file_name);
-            $data['image'] = $path.'/'.$file_name;
-            if ($user->image != null && file_exists($user->image))
+            $request->validate([
+                'role'       => 'required|in:'.User::ROLE_ADMIN.','.User::ROLE_MANAGER,
+                'name'       => 'required',
+                'image'      => 'mimes:jpeg,png|max:2048'
+            ]);
+
+            $data['name']   = $request->name;
+            $data['role']   = $request->role;
+            $user = User::findOrFail($id);
+
+            if ($request->hasFile('image'))
             {
-                unlink($user->image);
+                $file        = $request->file('image');
+                $path        = 'images/user';
+                $file_name   = time().rand('0000','9999').'.'.$file->getClientOriginalName();
+                $file->move($path,$file_name);
+                $data['image'] = $path.'/'.$file_name;
+                if ($user->image != null && file_exists($user->image))
+                {
+                    unlink($user->image);
+                }
             }
+            $user->update($data);
+            session()->flash('message','Admin Updated Successfully!');
+            return redirect()->route('user.index');
         }
-        $user->update($data);
-        session()->flash('message','Admin Updated Successfully!');
-        return redirect()->route('user.index');
+        session()->flash('message','You are not authorized parson to action this operation!!');
+        return redirect()->route('admin.dashboard');
+
     }
 
     /**
@@ -123,13 +148,19 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        if ($user->image != null && file_exists($user->image))
+        if (Gate::allows('admin',auth()->user()))
         {
-            unlink($user->image);
+            $user = User::findOrFail($id);
+            if ($user->image != null && file_exists($user->image))
+            {
+                unlink($user->image);
+            }
+            $user->delete();
+            session()->flash('message','Admin Deleted Successfully!');
+            return redirect()->back();
         }
-        $user->delete();
-        session()->flash('message','Admin Deleted Successfully!');
-        return redirect()->back();
+        session()->flash('message','You are not authorized parson to action this operation!!');
+        return redirect()->route('admin.dashboard');
+
     }
 }

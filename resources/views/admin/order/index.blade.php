@@ -60,7 +60,7 @@
                                     <tbody>
                                     @foreach($orders as $id=>$order)
                                         <tr>
-                                            <td>{{ ++$id }}</td>
+                                            <td>{{$orders->firstItem() +$id }}</td>
                                             <td>{{ $order->invoice_id }}</td>
                                             <td>
                                                 @if($order->client != null)

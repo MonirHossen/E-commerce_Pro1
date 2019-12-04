@@ -25,7 +25,9 @@
             <li class="has_sub">
                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i> <span> Users </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                 <ul class="list-unstyled">
+                    @can('admin',auth()->user())
                     <li><a href="{{ route('user.create') }}">Create New User</a></li>
+                    @endcan
                     <li><a href="{{ route('user.index') }}">List Of User</a></li>
                 </ul>
             </li>
