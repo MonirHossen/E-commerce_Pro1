@@ -24,6 +24,7 @@ Route::get('payment/{order_id?}','PaymentController@index')->name('payment.index
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
     Route::resource('user','UserController');
+    Route::post('user/import','UserController@import')->name('user.import');
     Route::resource('category','CategoryController');
     Route::resource('vendor','VendorController');
     Route::resource('product','ProductController');

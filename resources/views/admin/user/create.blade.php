@@ -19,8 +19,26 @@
         <div class="col-sm-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
+                    <h3 class="panel-title">User Import Form</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="{{ route('user.import') }}" method="post" enctype="multipart/form-data" role="form">
+                        @csrf
+                        <input type="file" name="import" class="form-control">
+                        <br>
+                        <button class="btn btn-success" type="submit">Import</button>
+                    </form>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div> <!-- col -->
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
                     <a href="{{ route('user.index') }}" class="btn btn-info pull-right"><i class="ti-list"></i>User List</a>
-                    <h3 class="panel-title">Form elements</h3>
+                    <h3 class="panel-title">User Form</h3>
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data" role="form">

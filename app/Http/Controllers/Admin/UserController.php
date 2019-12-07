@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -162,5 +164,12 @@ class UserController extends Controller
         session()->flash('message','You are not authorized parson to action this operation!!');
         return redirect()->route('admin.dashboard');
 
+    }
+    public function import(Request $request)
+    {
+        Excel::import(new UsersImport,$request->import);
+
+        session()->flash('message','User Imported Successfully!');
+        return redirect()->route('user.index');
     }
 }
