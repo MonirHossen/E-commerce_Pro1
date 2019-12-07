@@ -27,11 +27,14 @@
                             <div class="col-md-6">
                                 <form action="">
                                     <div class="row">
-                                        <div class="col-md-10">
+                                        <div class="col-md-7">
                                             <input type="text" value="{{ request()->search }}" class="form-control" name="search" placeholder="Search Orders">
                                         </div>
                                         <div class="col-md-2">
                                             <button class="btn btn-warning">Search</button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a href="{{ route('order.export') }}" class="btn btn-warning">Order Export</a>
                                         </div>
                                     </div>
                                 </form>
